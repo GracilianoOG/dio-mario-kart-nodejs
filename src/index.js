@@ -17,3 +17,9 @@ const player2 = {
 function rollDice() {
   return Math.floor(Math.random() * 6) + 1;
 }
+
+function main() {
+  console.log("Hello world!");
+}
+
+main();
