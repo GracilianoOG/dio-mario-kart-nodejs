@@ -57,11 +57,39 @@ function startRaceEngine(character1, character2) {
     if (block === "RETA") {
       totalSkillTest1 = diceResult1 + character1.velocidade;
       totalSkillTest2 = diceResult2 + character2.velocidade;
+
+      logRollResult(
+        character1.nome,
+        "velocidade",
+        diceResult1,
+        character1.velocidade
+      );
+
+      logRollResult(
+        character2.nome,
+        "velocidade",
+        diceResult2,
+        character2.velocidade
+      );
     }
 
     if (block === "CURVA") {
       totalSkillTest1 = diceResult1 + character1.manobrabilidade;
       totalSkillTest2 = diceResult2 + character2.manobrabilidade;
+
+      logRollResult(
+        character1.nome,
+        "manobrabilidade",
+        diceResult1,
+        character1.manobrabilidade
+      );
+
+      logRollResult(
+        character2.nome,
+        "manobrabilidade",
+        diceResult2,
+        character2.manobrabilidade
+      );
     }
 
     if (block === "CONFRONTO") {
