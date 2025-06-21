@@ -18,6 +18,8 @@ function rollDice() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
+function startRaceEngine(character1, character2) {}
+
 function main() {
   console.log(`Corrida entre ${player1.nome} e ${player2.nome} começando...\n`);
 }
