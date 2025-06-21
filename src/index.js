@@ -96,6 +96,16 @@ function startRaceEngine(character1, character2) {
       let powerResult1 = diceResult1 + character1.poder;
       let powerResult2 = diceResult2 + character2.poder;
     }
+
+    if (totalSkillTest1 > totalSkillTest2) {
+      console.log(`${character1.nome} marcou um ponto!`);
+      character1.pontos++;
+    } else if (totalSkillTest1 < totalSkillTest2) {
+      console.log(`${character2.nome} marcou um ponto!`);
+      character2.pontos++;
+    }
+
+    console.log("-----------------------------");
   }
 }
 
