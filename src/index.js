@@ -95,6 +95,25 @@ function startRaceEngine(character1, character2) {
     if (block === "CONFRONTO") {
       let powerResult1 = diceResult1 + character1.poder;
       let powerResult2 = diceResult2 + character2.poder;
+
+      console.log(`${character1.nome} confrontou com ${character2.nome}!`);
+
+      logRollResult(character1.nome, "poder", diceResult1, character1.poder);
+      logRollResult(character2.nome, "poder", diceResult2, character2.poder);
+
+      if (powerResult1 > powerResult2 && character2.pontos > 0) {
+        console.log(
+          `${character1.nome} venceu o confronto! ${character2.nome} perdeu 1 ponto!`
+        );
+        character2.pontos--;
+      } else if (powerResult1 > powerResult2 && character2.pontos > 0) {
+        console.log(
+          `${character2.nome} venceu o confronto! ${character1.nome} perdeu 1 ponto!`
+        );
+        character2.pontos--;
+      } else {
+        console.log("Confronto empatado! Nenhum ponto foi perdido.");
+      }
     }
 
     if (totalSkillTest1 > totalSkillTest2) {
