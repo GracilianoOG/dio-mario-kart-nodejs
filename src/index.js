@@ -19,7 +19,7 @@ function rollDice() {
 }
 
 function main() {
-  console.log("Hello world!");
+  console.log(`Corrida entre ${player1.nome} e ${player2.nome} começando...\n`);
 }
 
 main();
