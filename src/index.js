@@ -38,6 +38,29 @@ function startRaceEngine(character1, character2) {
     // Sort block
     const block = getRandomBlock();
     console.log(`Bloco: ${block}`);
+
+    // Roll dices
+    const diceResult1 = rollDice();
+    const diceResult2 = rollDice();
+
+    // Skill tests
+    let totalSkillTest1 = 0;
+    let totalSkillTest2 = 0;
+
+    if (block === "RETA") {
+      totalSkillTest1 = diceResult1 + character1.velocidade;
+      totalSkillTest2 = diceResult2 + character2.velocidade;
+    }
+
+    if (block === "CURVA") {
+      totalSkillTest1 = diceResult1 + character1.manobrabilidade;
+      totalSkillTest2 = diceResult2 + character2.manobrabilidade;
+    }
+
+    if (block === "CONFRONTO") {
+      let powerResult1 = diceResult1 + character1.poder;
+      let powerResult2 = diceResult2 + character2.poder;
+    }
   }
 }
 
