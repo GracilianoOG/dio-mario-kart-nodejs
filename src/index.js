@@ -5,3 +5,11 @@ const player1 = {
   poder: 3,
   pontos: 0,
 };
+
+const player2 = {
+  nome: "Luigi",
+  velocidade: 3,
+  manobrabilidade: 4,
+  poder: 4,
+  pontos: 0,
+};
