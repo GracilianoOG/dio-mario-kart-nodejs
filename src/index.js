@@ -31,6 +31,10 @@ function getRandomBlock() {
   }
 }
 
+function logRollResult(playerName, blockType, diceResult, playerAttribute) {
+  console.log(`${playerName} rolou um dado de ${blockType} ${diceResult}`);
+}
+
 function startRaceEngine(character1, character2) {
   for (let round = 1; round <= 5; round++) {
     console.log(`Rodada ${round}`);
