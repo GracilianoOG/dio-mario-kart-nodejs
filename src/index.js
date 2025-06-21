@@ -1,17 +1,17 @@
 const player1 = {
-  nome: "Mario",
-  velocidade: 4,
-  manobrabilidade: 3,
-  poder: 3,
-  pontos: 0,
+  name: "Mario",
+  speed: 4,
+  handling: 3,
+  power: 3,
+  score: 0,
 };
 
 const player2 = {
-  nome: "Luigi",
-  velocidade: 3,
-  manobrabilidade: 4,
-  poder: 4,
-  pontos: 0,
+  name: "Luigi",
+  speed: 3,
+  handling: 4,
+  power: 4,
+  score: 0,
 };
 
 function rollDice() {
@@ -55,73 +55,73 @@ function startRaceEngine(character1, character2) {
     let totalSkillTest2 = 0;
 
     if (block === "RETA") {
-      totalSkillTest1 = diceResult1 + character1.velocidade;
-      totalSkillTest2 = diceResult2 + character2.velocidade;
+      totalSkillTest1 = diceResult1 + character1.speed;
+      totalSkillTest2 = diceResult2 + character2.speed;
 
       logRollResult(
-        character1.nome,
+        character1.name,
         "velocidade",
         diceResult1,
-        character1.velocidade
+        character1.speed
       );
 
       logRollResult(
-        character2.nome,
+        character2.name,
         "velocidade",
         diceResult2,
-        character2.velocidade
+        character2.speed
       );
     }
 
     if (block === "CURVA") {
-      totalSkillTest1 = diceResult1 + character1.manobrabilidade;
-      totalSkillTest2 = diceResult2 + character2.manobrabilidade;
+      totalSkillTest1 = diceResult1 + character1.handling;
+      totalSkillTest2 = diceResult2 + character2.handling;
 
       logRollResult(
-        character1.nome,
+        character1.name,
         "manobrabilidade",
         diceResult1,
-        character1.manobrabilidade
+        character1.handling
       );
 
       logRollResult(
-        character2.nome,
+        character2.name,
         "manobrabilidade",
         diceResult2,
-        character2.manobrabilidade
+        character2.handling
       );
     }
 
     if (block === "CONFRONTO") {
-      let powerResult1 = diceResult1 + character1.poder;
-      let powerResult2 = diceResult2 + character2.poder;
+      let powerResult1 = diceResult1 + character1.power;
+      let powerResult2 = diceResult2 + character2.power;
 
-      console.log(`${character1.nome} confrontou com ${character2.nome}!`);
+      console.log(`${character1.name} confrontou com ${character2.name}!`);
 
-      logRollResult(character1.nome, "poder", diceResult1, character1.poder);
-      logRollResult(character2.nome, "poder", diceResult2, character2.poder);
+      logRollResult(character1.name, "poder", diceResult1, character1.power);
+      logRollResult(character2.name, "poder", diceResult2, character2.power);
 
-      if (powerResult1 > powerResult2 && character2.pontos > 0) {
+      if (powerResult1 > powerResult2 && character2.score > 0) {
         console.log(
-          `${character1.nome} venceu o confronto! ${character2.nome} perdeu 1 ponto!`
+          `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
-        character2.pontos--;
-      } else if (powerResult1 > powerResult2 && character2.pontos > 0) {
+        character2.score--;
+      } else if (powerResult1 > powerResult2 && character2.score > 0) {
         console.log(
-          `${character2.nome} venceu o confronto! ${character1.nome} perdeu 1 ponto!`
+          `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
-        character2.pontos--;
+        character2.score--;
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
       }
     }
 
     if (totalSkillTest1 > totalSkillTest2) {
-      console.log(`${character1.nome} marcou um ponto!`);
-      character1.pontos++;
+      console.log(`${character1.name} marcou um ponto!`);
+      character1.score++;
     } else if (totalSkillTest1 < totalSkillTest2) {
-      console.log(`${character2.nome} marcou um ponto!`);
-      character2.pontos++;
+      console.log(`${character2.name} marcou um ponto!`);
+      character2.score++;
     }
 
     console.log("-----------------------------");
@@ -130,20 +130,20 @@ function startRaceEngine(character1, character2) {
 
 function declareWinner(character1, character2) {
   console.log("Resultado final: ");
-  console.log(`${character1.nome}: ${character1.pontos} ponto(s)`);
-  console.log(`${character2.nome}: ${character2.pontos} ponto(s)`);
+  console.log(`${character1.name}: ${character1.score} ponto(s)`);
+  console.log(`${character2.name}: ${character2.score} ponto(s)`);
 
-  if (character1.pontos > character2.pontos) {
-    console.log(`\n${character1.nome} venceu a corrida! Parabéns! 🏆`);
-  } else if (character1.pontos < character2.pontos) {
-    console.log(`\n${character2.nome} venceu a corrida! Parabéns! 🏆`);
+  if (character1.score > character2.score) {
+    console.log(`\n${character1.name} venceu a corrida! Parabéns! 🏆`);
+  } else if (character1.score < character2.score) {
+    console.log(`\n${character2.name} venceu a corrida! Parabéns! 🏆`);
   } else {
     console.log("A corrida terminou em empate!");
   }
 }
 
 function main() {
-  console.log(`Corrida entre ${player1.nome} e ${player2.nome} começando...\n`);
+  console.log(`Corrida entre ${player1.name} e ${player2.name} começando...\n`);
 
   startRaceEngine(player1, player2);
   declareWinner(player1, player2);
