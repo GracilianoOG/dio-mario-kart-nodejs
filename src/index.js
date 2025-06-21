@@ -146,6 +146,7 @@ function main() {
   console.log(`Corrida entre ${player1.nome} e ${player2.nome} começando...\n`);
 
   startRaceEngine(player1, player2);
+  declareWinner(player1, player2);
 }
 
 main();
