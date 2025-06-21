@@ -32,7 +32,10 @@ function getRandomBlock() {
 }
 
 function logRollResult(playerName, blockType, diceResult, playerAttribute) {
-  console.log(`${playerName} rolou um dado de ${blockType} ${diceResult}`);
+  const totalSkillTest = diceResult + playerAttribute;
+  console.log(
+    `${playerName} rolou um dado de ${blockType} ${diceResult} + ${playerAttribute} = ${totalSkillTest}`
+  );
 }
 
 function startRaceEngine(character1, character2) {
