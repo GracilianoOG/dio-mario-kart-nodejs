@@ -128,6 +128,20 @@ function startRaceEngine(character1, character2) {
   }
 }
 
+function declareWinner(character1, character2) {
+  console.log("Resultado final: ");
+  console.log(`${character1.nome}: ${character1.pontos} ponto(s)`);
+  console.log(`${character2.nome}: ${character2.pontos} ponto(s)`);
+
+  if (character1.pontos > character2.pontos) {
+    console.log(`\n${character1.nome} venceu a corrida! Parabéns! 🏆`);
+  } else if (character1.pontos < character2.pontos) {
+    console.log(`\n${character2.nome} venceu a corrida! Parabéns! 🏆`);
+  } else {
+    console.log("A corrida terminou em empate!");
+  }
+}
+
 function main() {
   console.log(`Corrida entre ${player1.nome} e ${player2.nome} começando...\n`);
 
