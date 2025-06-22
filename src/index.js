@@ -82,6 +82,14 @@ const startRaceEngine = (character1, character2, configs) => {
       const powerResult1 = diceResult1 + character1.power;
       const powerResult2 = diceResult2 + character2.power;
 
+      const sortTurbo = player => {
+        const isLucky = Math.random() <= configs.turboChance;
+        if (isLucky) {
+          console.log(`${player.name} encontrou um turbo e ganhou 1 ponto! 🎉`);
+          player.score++;
+        }
+      };
+
       console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
 
       logRollResult(character1.name, "poder", diceResult1, character1.power);
@@ -91,11 +99,13 @@ const startRaceEngine = (character1, character2, configs) => {
         console.log(
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
+        sortTurbo(character1);
         character2.score = Math.max(character2.score - 1, 0);
       } else if (powerResult1 < powerResult2) {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
+        sortTurbo(character2);
         character1.score = Math.max(character1.score - 1, 0);
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
@@ -135,7 +145,7 @@ const declareWinner = (character1, character2) => {
 const main = () => {
   const player1 = new Player("Mario", 4, 3, 3);
   const player2 = new Player("Luigi", 3, 4, 4);
-  const configs = { rounds: 5 };
+  const configs = { rounds: 5, turboChance: 0.25 };
 
   console.log(
     `🏁🚨 Corrida entre ${player1.name} e ${player2.name} começando...\n`
