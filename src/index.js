@@ -24,8 +24,8 @@ function logRollResult(playerName, blockType, diceResult, playerAttribute) {
   );
 }
 
-function startRaceEngine(character1, character2) {
-  for (let round = 1; round <= 5; round++) {
+function startRaceEngine(character1, character2, configs) {
+  for (let round = 1; round <= configs.rounds; round++) {
     console.log(`Rodada ${round}`);
 
     // Sort block
@@ -131,10 +131,11 @@ function declareWinner(character1, character2) {
 function main() {
   const player1 = new Player("Mario", 4, 3, 3);
   const player2 = new Player("Luigi", 3, 4, 4);
+  const configs = { rounds: 5 };
 
   console.log(`Corrida entre ${player1.name} e ${player2.name} começando...\n`);
 
-  startRaceEngine(player1, player2);
+  startRaceEngine(player1, player2, configs);
   declareWinner(player1, player2);
 }
 
