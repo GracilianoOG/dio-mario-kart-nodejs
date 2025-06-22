@@ -90,7 +90,7 @@ const startRaceEngine = (character1, character2, configs) => {
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
         character2.score--;
-      } else if (powerResult1 > powerResult2 && character2.score > 0) {
+      } else if (powerResult1 < powerResult2 && character1.score > 0) {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
