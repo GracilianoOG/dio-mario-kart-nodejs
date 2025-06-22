@@ -18,7 +18,7 @@ const getRandomBlock = () => {
 const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
   const totalSkillTest = diceResult + playerAttribute;
   console.log(
-    `${playerName} rolou um 🎲 de ${blockType} ${diceResult} + ${playerAttribute} = ${totalSkillTest}`
+    `${playerName} rolou um dado de ${blockType} ${diceResult}🎲 + ${playerAttribute}🥊 = ${totalSkillTest}`
   );
 };
 
