@@ -45,8 +45,10 @@ const sortDamageType = () => {
 
 const startRaceEngine = (character1, character2, configs) => {
   for (let round = 1; round <= configs.rounds; round++) {
+    const roundFormatted = round.toString().padStart(3, " ");
+
     console.log(
-      `----------------------- 🏁 Rodada ${round} -----------------------`
+      `---------------------- 🏁 Rodada ${roundFormatted} ----------------------`
     );
 
     // Sort block
