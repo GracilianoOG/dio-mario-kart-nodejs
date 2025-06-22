@@ -22,6 +22,8 @@ const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
   );
 };
 
+const loseScore = player => Math.max(player.score - 1, 0);
+
 const startRaceEngine = (character1, character2, configs) => {
   for (let round = 1; round <= configs.rounds; round++) {
     console.log(
@@ -85,13 +87,13 @@ const startRaceEngine = (character1, character2, configs) => {
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
         sortTurbo(character1);
-        character2.score = Math.max(character2.score - 1, 0);
+        character2.score = loseScore(character2);
       } else if (totalSkillTest1 < totalSkillTest2) {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
         sortTurbo(character2);
-        character1.score = Math.max(character1.score - 1, 0);
+        character1.score = loseScore(character1);
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
       }
