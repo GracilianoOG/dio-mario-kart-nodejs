@@ -22,13 +22,24 @@ const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
   );
 };
 
-const loseScore = player => Math.max(player.score - 1, 0);
+const loseScore = (player, amount) => Math.max(player.score - amount, 0);
 
 const sortTurbo = (player, chance) => {
   const isLucky = Math.random() <= chance;
   if (isLucky) {
     console.log(`${player.name} encontrou um turbo e ganhou 1 ponto! 🎉`);
     player.score++;
+  }
+};
+
+const sortDamageType = () => {
+  const randomizer = Math.random();
+  const DAMAGE_TYPES = 2;
+
+  if (randomizer >= 1 / DAMAGE_TYPES) {
+    return { type: "casco", dmg: 1 };
+  } else {
+    return { type: "bomba", dmg: 2 };
   }
 };
 
@@ -70,18 +81,20 @@ const startRaceEngine = (character1, character2, configs) => {
     };
 
     const evaluateConfrontation = () => {
+      const { type, dmg } = sortDamageType();
+
       if (totalSkillTest1 > totalSkillTest2) {
         console.log(
-          `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
+          `${character1.name} venceu o confronto com ${type}! ${character2.name} perdeu ${dmg} ponto(s)!`
         );
         sortTurbo(character1, configs.turboChance);
-        character2.score = loseScore(character2);
+        character2.score = loseScore(character2, dmg);
       } else if (totalSkillTest1 < totalSkillTest2) {
         console.log(
-          `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
+          `${character2.name} venceu o confronto com ${type}! ${character1.name} perdeu ${dmg} ponto(s)!`
         );
         sortTurbo(character2, configs.turboChance);
-        character1.score = loseScore(character1);
+        character1.score = loseScore(character1, dmg);
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
       }
