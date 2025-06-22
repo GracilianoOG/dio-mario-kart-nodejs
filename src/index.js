@@ -87,18 +87,18 @@ const startRaceEngine = (character1, character2, configs) => {
       }
     };
 
-    if (block === "RETA") {
-      evaluateBlock(character1, character2, "speed", "velocidade");
-    }
-
-    if (block === "CURVA") {
-      evaluateBlock(character1, character2, "handling", "manobrabilidade");
-    }
-
-    if (block === "CONFRONTO") {
-      console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
-      evaluateBlock(character1, character2, "power", "poder");
-      evaluateConfrontation();
+    switch (block) {
+      case "RETA":
+        evaluateBlock(character1, character2, "speed", "velocidade");
+        break;
+      case "CURVA":
+        evaluateBlock(character1, character2, "handling", "manobrabilidade");
+        break;
+      case "CONFRONTO":
+        console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
+        evaluateBlock(character1, character2, "power", "poder");
+        evaluateConfrontation();
+        break;
     }
 
     if (block !== "CONFRONTO") {
