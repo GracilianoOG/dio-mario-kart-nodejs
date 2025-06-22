@@ -40,48 +40,34 @@ const startRaceEngine = (character1, character2, configs) => {
     let totalSkillTest1 = 0;
     let totalSkillTest2 = 0;
 
-    if (block === "RETA") {
-      totalSkillTest1 = diceResult1 + character1.speed;
-      totalSkillTest2 = diceResult2 + character2.speed;
+    const evaluateBlock = (player1, player2, attributeType, attributeText) => {
+      totalSkillTest1 = diceResult1 + player1[attributeType];
+      totalSkillTest2 = diceResult2 + player2[attributeType];
 
       logRollResult(
-        character1.name,
-        "velocidade",
+        player1.name,
+        attributeText,
         diceResult1,
-        character1.speed
+        player1[attributeType]
       );
 
       logRollResult(
-        character2.name,
-        "velocidade",
+        player2.name,
+        attributeText,
         diceResult2,
-        character2.speed
+        player2[attributeType]
       );
+    };
+
+    if (block === "RETA") {
+      evaluateBlock(character1, character2, "speed", "velocidade");
     }
 
     if (block === "CURVA") {
-      totalSkillTest1 = diceResult1 + character1.handling;
-      totalSkillTest2 = diceResult2 + character2.handling;
-
-      logRollResult(
-        character1.name,
-        "manobrabilidade",
-        diceResult1,
-        character1.handling
-      );
-
-      logRollResult(
-        character2.name,
-        "manobrabilidade",
-        diceResult2,
-        character2.handling
-      );
+      evaluateBlock(character1, character2, "handling", "manobrabilidade");
     }
 
     if (block === "CONFRONTO") {
-      const powerResult1 = diceResult1 + character1.power;
-      const powerResult2 = diceResult2 + character2.power;
-
       const sortTurbo = player => {
         const isLucky = Math.random() <= configs.turboChance;
         if (isLucky) {
@@ -92,16 +78,15 @@ const startRaceEngine = (character1, character2, configs) => {
 
       console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
 
-      logRollResult(character1.name, "poder", diceResult1, character1.power);
-      logRollResult(character2.name, "poder", diceResult2, character2.power);
+      evaluateBlock(character1, character2, "power", "poder");
 
-      if (powerResult1 > powerResult2) {
+      if (totalSkillTest1 > totalSkillTest2) {
         console.log(
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
         sortTurbo(character1);
         character2.score = Math.max(character2.score - 1, 0);
-      } else if (powerResult1 < powerResult2) {
+      } else if (totalSkillTest1 < totalSkillTest2) {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
@@ -112,12 +97,14 @@ const startRaceEngine = (character1, character2, configs) => {
       }
     }
 
-    if (totalSkillTest1 > totalSkillTest2) {
-      console.log(`${character1.name} marcou um ponto!`);
-      character1.score++;
-    } else if (totalSkillTest1 < totalSkillTest2) {
-      console.log(`${character2.name} marcou um ponto!`);
-      character2.score++;
+    if (block !== "CONFRONTO") {
+      if (totalSkillTest1 > totalSkillTest2) {
+        console.log(`${character1.name} marcou um ponto!`);
+        character1.score++;
+      } else if (totalSkillTest1 < totalSkillTest2) {
+        console.log(`${character2.name} marcou um ponto!`);
+        character2.score++;
+      }
     }
 
     console.log(`Placar: ${character1.score}x${character2.score}`);
