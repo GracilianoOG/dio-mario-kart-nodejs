@@ -4,7 +4,7 @@
 
 O projeto consiste em um jogo inspirado no Mario Kart desenvolvido com JavaScript e NodeJS. O jogo foi feito para rodar no terminal.
 
-## 🕹️ Regras & mecânicas:
+## 🕹️ Regras do jogo
 
 **Jogadores:**
 
