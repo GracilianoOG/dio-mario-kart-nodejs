@@ -104,6 +104,8 @@ const startRaceEngine = (character1, character2, configs) => {
       } else if (totalSkillTest1 < totalSkillTest2) {
         console.log(`${character2.name} marcou um ponto!`);
         character2.score++;
+      } else {
+        console.log("Houve empate entre os corredores!");
       }
     }
 
