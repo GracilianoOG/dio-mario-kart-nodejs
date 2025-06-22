@@ -79,8 +79,8 @@ const startRaceEngine = (character1, character2, configs) => {
     }
 
     if (block === "CONFRONTO") {
-      let powerResult1 = diceResult1 + character1.power;
-      let powerResult2 = diceResult2 + character2.power;
+      const powerResult1 = diceResult1 + character1.power;
+      const powerResult2 = diceResult2 + character2.power;
 
       console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
 
