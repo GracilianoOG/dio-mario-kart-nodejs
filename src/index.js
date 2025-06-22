@@ -108,6 +108,8 @@ const startRaceEngine = (character1, character2, configs) => {
       character2.score++;
     }
 
+    console.log(`Placar: ${character1.score}x${character2.score}`);
+
     console.log("-----------------------------");
   }
 };
