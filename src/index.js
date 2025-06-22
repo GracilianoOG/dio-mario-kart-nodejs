@@ -1,10 +1,8 @@
 import Player from "./GameObjects/Player.js";
 
-function rollDice() {
-  return Math.floor(Math.random() * 6) + 1;
-}
+const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
-function getRandomBlock() {
+const getRandomBlock = () => {
   const randomValue = Math.random();
 
   switch (true) {
@@ -15,16 +13,16 @@ function getRandomBlock() {
     default:
       return "CONFRONTO";
   }
-}
+};
 
-function logRollResult(playerName, blockType, diceResult, playerAttribute) {
+const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
   const totalSkillTest = diceResult + playerAttribute;
   console.log(
     `${playerName} rolou um dado de ${blockType} ${diceResult} + ${playerAttribute} = ${totalSkillTest}`
   );
-}
+};
 
-function startRaceEngine(character1, character2, configs) {
+const startRaceEngine = (character1, character2, configs) => {
   for (let round = 1; round <= configs.rounds; round++) {
     console.log(`Rodada ${round}`);
 
@@ -112,9 +110,9 @@ function startRaceEngine(character1, character2, configs) {
 
     console.log("-----------------------------");
   }
-}
+};
 
-function declareWinner(character1, character2) {
+const declareWinner = (character1, character2) => {
   console.log("Resultado final: ");
   console.log(`${character1.name}: ${character1.score} ponto(s)`);
   console.log(`${character2.name}: ${character2.score} ponto(s)`);
@@ -126,9 +124,9 @@ function declareWinner(character1, character2) {
   } else {
     console.log("A corrida terminou em empate!");
   }
-}
+};
 
-function main() {
+const main = () => {
   const player1 = new Player("Mario", 4, 3, 3);
   const player2 = new Player("Luigi", 3, 4, 4);
   const configs = { rounds: 5 };
@@ -137,6 +135,6 @@ function main() {
 
   startRaceEngine(player1, player2, configs);
   declareWinner(player1, player2);
-}
+};
 
 main();
