@@ -24,6 +24,14 @@ const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
 
 const loseScore = player => Math.max(player.score - 1, 0);
 
+const sortTurbo = (player, chance) => {
+  const isLucky = Math.random() <= chance;
+  if (isLucky) {
+    console.log(`${player.name} encontrou um turbo e ganhou 1 ponto! 🎉`);
+    player.score++;
+  }
+};
+
 const startRaceEngine = (character1, character2, configs) => {
   for (let round = 1; round <= configs.rounds; round++) {
     console.log(
@@ -70,14 +78,6 @@ const startRaceEngine = (character1, character2, configs) => {
     }
 
     if (block === "CONFRONTO") {
-      const sortTurbo = player => {
-        const isLucky = Math.random() <= configs.turboChance;
-        if (isLucky) {
-          console.log(`${player.name} encontrou um turbo e ganhou 1 ponto! 🎉`);
-          player.score++;
-        }
-      };
-
       console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
 
       evaluateBlock(character1, character2, "power", "poder");
@@ -86,13 +86,13 @@ const startRaceEngine = (character1, character2, configs) => {
         console.log(
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
         );
-        sortTurbo(character1);
+        sortTurbo(character1, configs.turboChance);
         character2.score = loseScore(character2);
       } else if (totalSkillTest1 < totalSkillTest2) {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
-        sortTurbo(character2);
+        sortTurbo(character2, configs.turboChance);
         character1.score = loseScore(character1);
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
