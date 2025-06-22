@@ -18,13 +18,15 @@ const getRandomBlock = () => {
 const logRollResult = (playerName, blockType, diceResult, playerAttribute) => {
   const totalSkillTest = diceResult + playerAttribute;
   console.log(
-    `${playerName} rolou um dado de ${blockType} ${diceResult} + ${playerAttribute} = ${totalSkillTest}`
+    `${playerName} rolou um 🎲 de ${blockType} ${diceResult} + ${playerAttribute} = ${totalSkillTest}`
   );
 };
 
 const startRaceEngine = (character1, character2, configs) => {
   for (let round = 1; round <= configs.rounds; round++) {
-    console.log(`Rodada ${round}`);
+    console.log(
+      `----------------------- 🏁 Rodada ${round} -----------------------`
+    );
 
     // Sort block
     const block = getRandomBlock();
@@ -80,7 +82,7 @@ const startRaceEngine = (character1, character2, configs) => {
       let powerResult1 = diceResult1 + character1.power;
       let powerResult2 = diceResult2 + character2.power;
 
-      console.log(`${character1.name} confrontou com ${character2.name}!`);
+      console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
 
       logRollResult(character1.name, "poder", diceResult1, character1.power);
       logRollResult(character2.name, "poder", diceResult2, character2.power);
@@ -110,7 +112,9 @@ const startRaceEngine = (character1, character2, configs) => {
 
     console.log(`Placar: ${character1.score}x${character2.score}`);
 
-    console.log("-----------------------------");
+    console.log(
+      "-----------------------------------------------------------\n"
+    );
   }
 };
 
@@ -133,7 +137,9 @@ const main = () => {
   const player2 = new Player("Luigi", 3, 4, 4);
   const configs = { rounds: 5 };
 
-  console.log(`Corrida entre ${player1.name} e ${player2.name} começando...\n`);
+  console.log(
+    `🏁🚨 Corrida entre ${player1.name} e ${player2.name} começando...\n`
+  );
 
   startRaceEngine(player1, player2, configs);
   declareWinner(player1, player2);
