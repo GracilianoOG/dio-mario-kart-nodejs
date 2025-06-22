@@ -69,19 +69,7 @@ const startRaceEngine = (character1, character2, configs) => {
       );
     };
 
-    if (block === "RETA") {
-      evaluateBlock(character1, character2, "speed", "velocidade");
-    }
-
-    if (block === "CURVA") {
-      evaluateBlock(character1, character2, "handling", "manobrabilidade");
-    }
-
-    if (block === "CONFRONTO") {
-      console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
-
-      evaluateBlock(character1, character2, "power", "poder");
-
+    const evaluateConfrontation = () => {
       if (totalSkillTest1 > totalSkillTest2) {
         console.log(
           `${character1.name} venceu o confronto! ${character2.name} perdeu 1 ponto!`
@@ -97,6 +85,20 @@ const startRaceEngine = (character1, character2, configs) => {
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
       }
+    };
+
+    if (block === "RETA") {
+      evaluateBlock(character1, character2, "speed", "velocidade");
+    }
+
+    if (block === "CURVA") {
+      evaluateBlock(character1, character2, "handling", "manobrabilidade");
+    }
+
+    if (block === "CONFRONTO") {
+      console.log(`${character1.name} confrontou com ${character2.name}! ⚔️`);
+      evaluateBlock(character1, character2, "power", "poder");
+      evaluateConfrontation();
     }
 
     if (block !== "CONFRONTO") {
