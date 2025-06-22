@@ -94,7 +94,7 @@ const startRaceEngine = (character1, character2, configs) => {
         console.log(
           `${character2.name} venceu o confronto! ${character1.name} perdeu 1 ponto!`
         );
-        character2.score--;
+        character1.score--;
       } else {
         console.log("Confronto empatado! Nenhum ponto foi perdido.");
       }
